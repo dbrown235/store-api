@@ -19,10 +19,7 @@ app.config['SQLAlCHEMY_TRACK_MODIFICATIONS'] = False #tell Flask not to track mo
 app.secret_key = 'jose'
 api = Api(app) #make flask conform to restful principles through flask_restful
 
-#flask decorator
-@app.before_first_request
-def create_tables():
-    db.create_all() #create all tables unless they exist already
+
 
 #use created app object, authenticate function, and identity function
 jwt = JWT(app, authenticate, identity)
