@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -14,7 +16,7 @@ from resources.store import Store,StoreList
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #connection to db
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db') #connection to db
 app.config['SQLAlCHEMY_TRACK_MODIFICATIONS'] = False #tell Flask not to track modifications
 app.secret_key = 'jose'
 api = Api(app) #make flask conform to restful principles through flask_restful
